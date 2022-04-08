@@ -11,6 +11,8 @@ const messageSearch = document.querySelector('#message-search');
 // theme
 const theme = document.querySelector('#theme');
 const themeModal = document.querySelector('.customize-theme');
+const fontSizes = document.querySelectorAll('.choose-size span');
+var root = document.querySelector(':root');
 
 // ============= sidebar =================
 
@@ -81,3 +83,52 @@ const closeThemeModal = (e) => {
 themeModal.addEventListener('click', closeThemeModal);
 
 theme.addEventListener('click', openThemeModal);
+
+
+
+//=========== fonts
+
+
+//remove active class from all theme options
+const removeSizeSelector = () => {
+    fontSizes.forEach(size => {
+        size.classList.remove('active');
+    })
+}
+
+
+fontSizes.forEach(size => {
+    
+    size.addEventListener('click', () => {
+        let fontSize;
+        removeSizeSelector();
+        size.classList.toggle('active');
+
+
+        if(size.classList.contains('font-size-1')) {
+            fontSize = '10px';
+            root.style.setProperty('--sticky-top-left', '5.4rem');
+            root.style.setProperty('--sticky-top-right', '5.4rem');
+        } else if(size.classList.contains('font-size-2')) {
+            fontSize = '13px';
+            root.style.setProperty('--sticky-top-left', '5.4rem');
+            root.style.setProperty('--sticky-top-right', '-7rem');
+        } else if(size.classList.contains('font-size-3')) {
+            fontSize = '16px';
+            root.style.setProperty('--sticky-top-left', '-2rem');
+            root.style.setProperty('--sticky-top-right', '-17rem');
+        } else if(size.classList.contains('font-size-4')) {
+            fontSize = '19px';
+            root.style.setProperty('--sticky-top-left', '-5rem');
+            root.style.setProperty('--sticky-top-right', '-25rem');
+        } else if(size.classList.contains('font-size-5')) {
+            fontSize = '22px';
+            root.style.setProperty('--sticky-top-left', '-12rem');
+            root.style.setProperty('--sticky-top-right', '-35rem');
+        }
+    //change font size of root html element
+    document.querySelector('html').style.fontSize = fontSize;
+    }) 
+})
+
+// change primary colors
