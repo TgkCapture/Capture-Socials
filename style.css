@@ -538,7 +538,7 @@ main .container .right {
     display: grid;
     place-items: center;
     font-size: 0.9rem;
-    /* display: none; */
+    display: none;
 }
 
 .customize-theme .card {
